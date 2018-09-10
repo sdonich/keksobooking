@@ -1,21 +1,21 @@
 'use strict';
 
 (function (global) {
-  var MAX_MAP_PINS = 100;
-  var mapPins = document.querySelector('.map__pins');
-  var loadAdverts = [];
-  var fragmentMapPin = document.createDocumentFragment();
-  var similaradvertsTemplate = document.querySelector('template').content.querySelector('.map__pin');
+  let MAX_MAP_PINS = 100;
+  let mapPins = document.querySelector('.map__pins');
+  let loadAdverts = [];
+  let fragmentMapPin = document.createDocumentFragment();
+  let similaradvertsTemplate = document.querySelector('template').content.querySelector('.map__pin');
 
-  var formContainer = document.querySelector('.map__filters');
+  let formContainer = document.querySelector('.map__filters');
   formContainer.addEventListener('change', function () {
     window.remove.mapPins();
     window.remove.popup();
     window.debounce(global.createMapPins);
   });
 
-  var renderMapPin = function (pin) {
-    var mapPin = similaradvertsTemplate.cloneNode(true);
+  let renderMapPin = function (pin) {
+    let mapPin = similaradvertsTemplate.cloneNode(true);
 
     mapPin.style.left = pin.location.x + 'px';
     mapPin.style.top = pin.location.y + 'px';
@@ -23,11 +23,11 @@
     return mapPin;
   };
 
-  var chooseMapPin = function () {
-    var adverts = window.useFilter(loadAdverts);
+  let chooseMapPin = function () {
+    let adverts = window.useFilter(loadAdverts);
 
-    for (var i = 0; i < MAX_MAP_PINS && i < adverts.length; i++) {
-      var pin = renderMapPin(adverts[i]);
+    for (let i = 0; i < MAX_MAP_PINS && i < adverts.length; i++) {
+      let pin = renderMapPin(adverts[i]);
       window.setupPinHandler(pin, adverts[i]);
       fragmentMapPin.appendChild(pin);
     }
@@ -42,8 +42,8 @@
     window.notice.error);
   };
 
-  var features = formContainer.querySelectorAll('input[type=checkbox]');
-  for (var i = 0; i < features.length; i++) {
+  let features = formContainer.querySelectorAll('input[type=checkbox]');
+  for (let i = 0; i < features.length; i++) {
     features[i].addEventListener('focus', function (evt) {
       evt.target.nextElementSibling.style.boxShadow = '0 0 4px 1px #ff6547';
     });

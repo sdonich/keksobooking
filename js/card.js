@@ -1,16 +1,16 @@
 'use strict';
 
 (function (global) {
-  var PHOTO_WIDTH = '40px';
-  var PHOTO_HEIGHT = '40px';
+  let PHOTO_WIDTH = '40px';
+  let PHOTO_HEIGHT = '40px';
 
-  var mainMap = document.querySelector('.map');
-  var popupTemplate = document.querySelector('template').content.querySelector('.map__card');
-  var popup = popupTemplate.cloneNode(true);
-  var fragmentPopup = document.createDocumentFragment();
-  var crossCloseButton = popup.querySelector('.popup__close');
+  let mainMap = document.querySelector('.map');
+  let popupTemplate = document.querySelector('template').content.querySelector('.map__card');
+  let popup = popupTemplate.cloneNode(true);
+  let fragmentPopup = document.createDocumentFragment();
+  let crossCloseButton = popup.querySelector('.popup__close');
 
-  var getPopup = function (advert) {
+  let getPopup = function (advert) {
     while (popup.querySelector('.popup__pictures').lastChild) {
       popup.querySelector('.popup__pictures').removeChild(popup.querySelector('.popup__pictures').lastChild);
     }
@@ -18,7 +18,7 @@
       popup.querySelector('.popup__features').removeChild(popup.querySelector('.popup__features').lastChild);
     }
 
-    var specification = popup.querySelectorAll('p');
+    let specification = popup.querySelectorAll('p');
     popup.querySelector('img').src = advert.author.avatar;
     popup.querySelector('h3').textContent = advert.offer.title;
     specification[0].querySelector('small').textContent = advert.offer.address;
@@ -39,11 +39,11 @@
         break;
     }
 
-    var amountRooms = ' комнаты';
+    let amountRooms = ' комнаты';
     if (advert.offer.rooms === 1) {
       amountRooms = ' комната';
     }
-    var amountGuests = ' гостей';
+    let amountGuests = ' гостей';
     if (advert.offer.guests === 1) {
       amountGuests = ' гостя';
     }
@@ -56,10 +56,10 @@
     return popup;
   };
 
-  var getFeatures = function (advert) {
-    var featuresCard = popupTemplate.querySelector('.popup__features').cloneNode(true);
-    var features = featuresCard.querySelectorAll('li');
-    for (var i = 0; i < advert.offer.features.length; i++) {
+  let getFeatures = function (advert) {
+    let featuresCard = popupTemplate.querySelector('.popup__features').cloneNode(true);
+    let features = featuresCard.querySelectorAll('li');
+    for (let i = 0; i < advert.offer.features.length; i++) {
       switch (advert.offer.features[i]) {
         case 'wifi':
           popup.querySelector('.popup__features').appendChild(features[0]);
@@ -83,35 +83,35 @@
     }
   };
 
-  var getPopupPhoto = function (advert) {
-    var popupPhoto = popup.querySelector('.popup__pictures');
+  let getPopupPhoto = function (advert) {
+    let popupPhoto = popup.querySelector('.popup__pictures');
 
-    var addPopupPhoto = function (photo) {
-      var flatPhoto = popupTemplate.querySelector('.popup__pictures').querySelector('li').cloneNode(true);
+    let addPopupPhoto = function (photo) {
+      let flatPhoto = popupTemplate.querySelector('.popup__pictures').querySelector('li').cloneNode(true);
       flatPhoto.querySelector('img').style.width = PHOTO_WIDTH;
       flatPhoto.querySelector('img').style.height = PHOTO_HEIGHT;
       flatPhoto.querySelector('img').src = photo;
       return flatPhoto;
     };
-    for (var i = 0; i < advert.offer.photos.length; i++) {
+    for (let i = 0; i < advert.offer.photos.length; i++) {
       popupPhoto.appendChild(addPopupPhoto(advert.offer.photos[i]));
     }
     return popupPhoto;
   };
 
-  var closePopup = function () {
+  let closePopup = function () {
     document.querySelector('.popup').remove();
     document.removeEventListener('keydown', onPopupEscPress);
   };
 
-  var onPopupEscPress = function (evt) {
+  let onPopupEscPress = function (evt) {
     window.util.isEscEvent(evt, closePopup);
   };
-  var onPopupEnterPress = function (evt) {
+  let onPopupEnterPress = function (evt) {
     window.util.isEnterEvent(evt, closePopup);
   };
 
-  var renderPopup = function (data) {
+  let renderPopup = function (data) {
     fragmentPopup.appendChild(getPopup(data));
     mainMap.appendChild(fragmentPopup);
 

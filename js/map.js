@@ -1,21 +1,21 @@
 'use strict';
 
 (function (global) {
-  var MAIN_PIN_RADIUS = 31;
-  var NEEDLE = 22;
-  var HORIZON = 150;
-  var BOTTOM_HORIZON = 700;
+  let MAIN_PIN_RADIUS = 31;
+  let NEEDLE = 22;
+  let HORIZON = 150;
+  let BOTTOM_HORIZON = 700;
 
-  var mainMap = document.querySelector('.map');
-  var mainPin = mainMap.querySelector('.map__pin--main');
-  var formNotice = document.querySelector('.notice__form');
+  let mainMap = document.querySelector('.map');
+  let mainPin = mainMap.querySelector('.map__pin--main');
+  let formNotice = document.querySelector('.notice__form');
 
   window.getCoords.start();
 
-  var rightMapBorder = mainMap.clientWidth - MAIN_PIN_RADIUS;
-  var leftMapBorder = MAIN_PIN_RADIUS;
-  var bottomMapBorder = BOTTOM_HORIZON - MAIN_PIN_RADIUS - NEEDLE;
-  var topMapBorder = HORIZON - MAIN_PIN_RADIUS;
+  let rightMapBorder = mainMap.clientWidth - MAIN_PIN_RADIUS;
+  let leftMapBorder = MAIN_PIN_RADIUS;
+  let bottomMapBorder = BOTTOM_HORIZON - MAIN_PIN_RADIUS - NEEDLE;
+  let topMapBorder = HORIZON - MAIN_PIN_RADIUS;
 
   global.setupMainPinHandler = function (evt) {
     evt.preventDefault();
@@ -24,13 +24,13 @@
     formNotice.classList.remove('notice__form--disabled');
     window.setFormState(false);
 
-    var startCoords = {
+    let startCoords = {
       x: evt.target.parentElement.clientX,
       y: evt.target.parentElement.clientY
     };
 
-    var onMouseMove = function (moveEvt) {
-      var shift = {
+    let onMouseMove = function (moveEvt) {
+      let shift = {
         x: startCoords.x - moveEvt.clientX,
         y: startCoords.y - moveEvt.clientY
       };
@@ -48,7 +48,7 @@
       }
       window.getCoords.form();
     };
-    var onMouseUp = function (upEvt) {
+    let onMouseUp = function (upEvt) {
       upEvt.preventDefault();
 
       window.getCoords.form();

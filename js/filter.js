@@ -2,26 +2,26 @@
 
 (function (global) {
 
-  var filterWifi = document.querySelector('#filter-wifi');
-  var filterDishwasher = document.querySelector('#filter-dishwasher');
-  var filterParking = document.querySelector('#filter-parking');
-  var filterWasher = document.querySelector('#filter-washer');
-  var filterElevator = document.querySelector('#filter-elevator');
-  var filterConditioner = document.querySelector('#filter-conditioner');
-  var filterGuests = document.querySelector('#housing-guests');
-  var filterRooms = document.querySelector('#housing-rooms');
-  var filterPrice = document.querySelector('#housing-price');
-  var filterType = document.querySelector('#housing-type');
+  let filterWifi = document.querySelector('#filter-wifi');
+  let filterDishwasher = document.querySelector('#filter-dishwasher');
+  let filterParking = document.querySelector('#filter-parking');
+  let filterWasher = document.querySelector('#filter-washer');
+  let filterElevator = document.querySelector('#filter-elevator');
+  let filterConditioner = document.querySelector('#filter-conditioner');
+  let filterGuests = document.querySelector('#housing-guests');
+  let filterRooms = document.querySelector('#housing-rooms');
+  let filterPrice = document.querySelector('#housing-price');
+  let filterType = document.querySelector('#housing-type');
 
-  var featureFilter = function (item) {
-    var wifiPresented = item.offer.features.indexOf('wifi') !== -1;
-    var dishwasherPresented = item.offer.features.indexOf('dishwasher') !== -1;
-    var parkingPresented = item.offer.features.indexOf('parking') !== -1;
-    var washerPresented = item.offer.features.indexOf('washer') !== -1;
-    var elevatorPresented = item.offer.features.indexOf('elevator') !== -1;
-    var conditionerPresented = item.offer.features.indexOf('conditioner') !== -1;
+  let featureFilter = function (item) {
+    let wifiPresented = item.offer.features.indexOf('wifi') !== -1;
+    let dishwasherPresented = item.offer.features.indexOf('dishwasher') !== -1;
+    let parkingPresented = item.offer.features.indexOf('parking') !== -1;
+    let washerPresented = item.offer.features.indexOf('washer') !== -1;
+    let elevatorPresented = item.offer.features.indexOf('elevator') !== -1;
+    let conditionerPresented = item.offer.features.indexOf('conditioner') !== -1;
 
-    var result = true;
+    let result = true;
     result = result && (filterWifi.checked ? wifiPresented : true);
     result = result && (filterDishwasher.checked ? dishwasherPresented : true);
     result = result && (filterParking.checked ? parkingPresented : true);
@@ -32,18 +32,18 @@
     return result;
   };
 
-  var guestsFilter = function (item) {
-    var matchGuests = item.offer.guests === +filterGuests.value;
+  let guestsFilter = function (item) {
+    let matchGuests = item.offer.guests === +filterGuests.value;
     return filterGuests.value === 'any' ? true : matchGuests;
   };
 
-  var roomsFilter = function (item) {
-    var matchRooms = item.offer.rooms === +filterRooms.value;
+  let roomsFilter = function (item) {
+    let matchRooms = item.offer.rooms === +filterRooms.value;
     return filterRooms.value === 'any' ? true : matchRooms;
   };
 
-  var priceFilter = function (item) {
-    var price = item.offer.price;
+  let priceFilter = function (item) {
+    let price = item.offer.price;
     if (filterPrice.value === 'any') {
       return true;
     }
@@ -57,8 +57,8 @@
     return price >= 50000;
   };
 
-  var houseTypeFilter = function (item) {
-    var matchType = item.offer.type === filterType.value;
+  let houseTypeFilter = function (item) {
+    let matchType = item.offer.type === filterType.value;
     return filterType.value === 'any' ? true : matchType;
   };
 

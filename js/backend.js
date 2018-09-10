@@ -1,18 +1,18 @@
 'use strict';
 
 (function (global) {
-  var URL = 'https://js.dump.academy/keksobooking';
-  var URL_DATA = 'https://js.dump.academy/keksobooking/data';
-  var OK_STATUS = 200;
+  let URL = 'https://js.dump.academy/keksobooking';
+  let URL_DATA = 'https://js.dump.academy/keksobooking/data';
+  let OK_STATUS = 200;
 
   global.backend = {
     save: function (data, onLoad, onError) {
-      var xhr = new XMLHttpRequest();
+      let xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
 
       xhr.addEventListener('load', function () {
         if (xhr.status !== OK_STATUS) {
-          var error = {
+          let error = {
             code: xhr.status
           };
           onError(error);
@@ -29,11 +29,11 @@
       xhr.send(data);
     },
     load: function (onLoad, onError) {
-      var xhr = new XMLHttpRequest();
+      let xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
 
       xhr.addEventListener('load', function () {
-        var error = {
+        let error = {
           code: xhr.status
         };
 

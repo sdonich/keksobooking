@@ -2,7 +2,7 @@
 
 (function (global) {
 
-  var mapPins = document.querySelector('.map__pins');
+  let mapPins = document.querySelector('.map__pins');
 
   global.remove = {
     mapPins: function () {

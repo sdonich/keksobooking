@@ -2,16 +2,16 @@
 
 (function (global) {
 
-  var FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
-  var AVATAR_DEFAULT = 'img/muffin.png';
+  let FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+  let AVATAR_DEFAULT = 'img/muffin.png';
 
-  var formNotice = document.querySelector('.notice__form');
-  var mainMap = document.querySelector('.map');
-  var mainPin = mainMap.querySelector('.map__pin--main');
-  var fileChooser = document.querySelector('#images');
-  var photoPreview = fileChooser.nextElementSibling;
-  var fileChooserAvatar = document.querySelector('#avatar');
-  var avatarPreview = document.querySelector('.notice__preview img');
+  let formNotice = document.querySelector('.notice__form');
+  let mainMap = document.querySelector('.map');
+  let mainPin = mainMap.querySelector('.map__pin--main');
+  let fileChooser = document.querySelector('#images');
+  let photoPreview = fileChooser.nextElementSibling;
+  let fileChooserAvatar = document.querySelector('#avatar');
+  let avatarPreview = document.querySelector('.notice__preview img');
 
   window.setFormState(true);
 
@@ -21,7 +21,7 @@
     mainPin.removeEventListener('click', window.loadDataPinHandler);
   };
 
-  var resetSet = function () {
+  let resetSet = function () {
     formNotice.reset();
     document.querySelector('.map__filters').reset();
     window.remove.mapPins();
@@ -45,7 +45,7 @@
     window.notice.error);
   });
 
-  var resetButton = document.querySelector('.form__reset');
+  let resetButton = document.querySelector('.form__reset');
   resetButton.addEventListener('click', function (evt) {
     evt.preventDefault();
     window.notice.reset();
@@ -53,17 +53,17 @@
   });
 
   document.querySelector('#timein').addEventListener('change', function (evt) {
-    var changeTimeCheckin = document.querySelector('#timeout');
+    let changeTimeCheckin = document.querySelector('#timeout');
     changeTimeCheckin.value = evt.target.value;
   });
 
   document.querySelector('#timeout').addEventListener('change', function (evt) {
-    var changeTimeCheckin = document.querySelector('#timein');
+    let changeTimeCheckin = document.querySelector('#timein');
     changeTimeCheckin.value = evt.target.value;
   });
 
   document.querySelector('#type').addEventListener('change', function (evt) {
-    var minPrice = document.querySelector('#price');
+    let minPrice = document.querySelector('#price');
 
     if (evt.target.value === 'flat') {
       minPrice.min = '1000';
@@ -84,8 +84,8 @@
   });
 
   document.querySelector('#room_number').addEventListener('change', function (evt) {
-    var numGuests = document.querySelector('#capacity');
-    var option = numGuests.querySelectorAll('option');
+    let numGuests = document.querySelector('#capacity');
+    let option = numGuests.querySelectorAll('option');
 
     if (evt.target.value === '1') {
       option[0].disabled = true;
@@ -117,8 +117,8 @@
     }
   });
 
-  var formFeatures = formNotice.querySelectorAll('input[type=checkbox]');
-  for (var i = 0; i < formFeatures.length; i++) {
+  let formFeatures = formNotice.querySelectorAll('input[type=checkbox]');
+  for (let i = 0; i < formFeatures.length; i++) {
 
     formFeatures[i].addEventListener('focus', function (evt) {
       evt.target.nextElementSibling.style.boxShadow = '0 0 4px 1px #ff6547';
@@ -142,15 +142,15 @@
   }
 
   fileChooser.addEventListener('change', function () {
-    var file = fileChooser.files[0];
-    var fileName = file.name.toLowerCase();
+    let file = fileChooser.files[0];
+    let fileName = file.name.toLowerCase();
 
-    var matches = FILE_TYPES.some(function (it) {
+    let matches = FILE_TYPES.some(function (it) {
       return fileName.endsWith(it);
     });
 
     if (matches) {
-      var reader = new FileReader();
+      let reader = new FileReader();
 
       reader.addEventListener('load', function () {
         photoPreview.style.backgroundImage = 'url(' + reader.result + ')';
@@ -160,15 +160,15 @@
   });
 
   fileChooserAvatar.addEventListener('change', function () {
-    var file = fileChooserAvatar.files[0];
-    var fileName = file.name.toLowerCase();
+    let file = fileChooserAvatar.files[0];
+    let fileName = file.name.toLowerCase();
 
-    var matches = FILE_TYPES.some(function (it) {
+    let matches = FILE_TYPES.some(function (it) {
       return fileName.endsWith(it);
     });
 
     if (matches) {
-      var reader = new FileReader();
+      let reader = new FileReader();
 
       reader.addEventListener('load', function () {
         avatarPreview.src = reader.result;

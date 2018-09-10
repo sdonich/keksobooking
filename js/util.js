@@ -1,8 +1,8 @@
 'use strict';
 
 (function (global) {
-  var ESC_KEYCODE = 27;
-  var ENTER_KEYCODE = 13;
+  let ESC_KEYCODE = 27;
+  let ENTER_KEYCODE = 13;
 
   global.util = {
     isEscEvent: function (evt, action) {

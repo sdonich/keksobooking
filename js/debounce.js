@@ -1,9 +1,9 @@
 'use strict';
 
 (function (global) {
-  var DEBOUNCE_INTERVAL = 500;
+  let DEBOUNCE_INTERVAL = 500;
 
-  var lastTimeout;
+  let lastTimeout;
   global.debounce = function (fun) {
     if (lastTimeout) {
       window.clearTimeout(lastTimeout);

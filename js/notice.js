@@ -1,11 +1,11 @@
 'use strict';
 
 (function (global) {
-  var ERROR_CODE = 400;
-  var TIME = 2000;
+  let ERROR_CODE = 400;
+  let TIME = 2000;
 
-  var getError = function (error) {
-    var note = document.createElement('div');
+  let getError = function (error) {
+    let note = document.createElement('div');
 
     document.body.appendChild(note);
     note.classList.add('descript-notice');
@@ -23,8 +23,8 @@
     }, TIME);
   };
 
-  var getSucces = function () {
-    var note = document.createElement('div');
+  let getSucces = function () {
+    let note = document.createElement('div');
 
     document.body.appendChild(note);
     note.classList.add('descript-notice');
@@ -35,8 +35,8 @@
     }, TIME);
   };
 
-  var reset = function () {
-    var note = document.createElement('div');
+  let reset = function () {
+    let note = document.createElement('div');
 
     document.body.appendChild(note);
     note.classList.add('descript-notice');
