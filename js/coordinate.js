@@ -10,13 +10,13 @@
   let MAIN_Y = START_Y + MAIN_PIN_RADIUS;
 
   let mainPin = document.querySelector('.map__pin--main');
-  let formNotice = document.querySelector('.notice__form');
-  let fieldsets = formNotice.querySelectorAll('fieldset');
-  let mainPinAdress = fieldsets[2].querySelector('input');
+  let mainPinAdress = document.querySelector('#address');
 
   global.getCoords = {
     start: function () {
+      // mainPinAdress.value = MAIN_X + ', ' + MAIN_Y;
       mainPinAdress.value = MAIN_X + ', ' + MAIN_Y;
+
       mainPin.style.left = START_X + 'px';
       mainPin.style.top = START_Y + 'px';
     },
