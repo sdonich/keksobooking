@@ -21,7 +21,7 @@
     mainPin.removeEventListener('click', window.loadDataPinHandler);
   };
 
-  let resetSet = function () {
+  function resetSet() {
     formNotice.reset();
     document.querySelector('.map__filters').reset();
     window.remove.mapPins();

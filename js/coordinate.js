@@ -10,20 +10,18 @@
   let MAIN_Y = START_Y + MAIN_PIN_RADIUS;
 
   let mainPin = document.querySelector('.map__pin--main');
-  let mainPinAdress = document.querySelector('#address');
+  let mainPinAddress = document.querySelector('#address');
 
   global.getCoords = {
-    start: function () {
-      // mainPinAdress.value = MAIN_X + ', ' + MAIN_Y;
-      mainPinAdress.value = MAIN_X + ', ' + MAIN_Y;
-
-      mainPin.style.left = START_X + 'px';
-      mainPin.style.top = START_Y + 'px';
+    start() {
+      mainPinAddress.value = `${MAIN_X}, ${MAIN_Y}`;
+      mainPin.style.left = `${START_X}px`;
+      mainPin.style.top = `${START_Y}px`;
     },
-    form: function () {
-      let mainCoordinateX = mainPin.offsetLeft + MAIN_PIN_RADIUS;
-      let mainCoordinateY = mainPin.offsetTop + MAIN_PIN_RADIUS + NEEDLE;
-      mainPinAdress.value = mainCoordinateX + ', ' + mainCoordinateY;
+    form() {
+      let mainPinCoordinateX = mainPin.offsetLeft + MAIN_PIN_RADIUS;
+      let mainPinCoordinateY = mainPin.offsetTop + MAIN_PIN_RADIUS + NEEDLE;
+      mainPinAddress.value = `${mainPinCoordinateX}, ${mainPinCoordinateY}`;
     }
   };
 

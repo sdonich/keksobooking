@@ -12,6 +12,7 @@
 
   window.getCoords.start();
 
+  //блок переменных для области, доступной для позиционирования mainPin
   let rightMapBorder = mainMap.clientWidth - MAIN_PIN_RADIUS;
   let leftMapBorder = MAIN_PIN_RADIUS;
   let bottomMapBorder = BOTTOM_HORIZON - MAIN_PIN_RADIUS - NEEDLE;
@@ -29,7 +30,7 @@
       y: evt.target.parentElement.clientY
     };
 
-    let onMouseMove = function (moveEvt) {
+    function onMouseMove(moveEvt) {
       let shift = {
         x: startCoords.x - moveEvt.clientX,
         y: startCoords.y - moveEvt.clientY
@@ -40,15 +41,17 @@
         y: moveEvt.clientY
       };
 
+      // проверка на выход mainPin за область
       if (mainPin.offsetTop - shift.y < bottomMapBorder && mainPin.offsetTop - shift.y > topMapBorder) {
-        mainPin.style.top = (mainPin.offsetTop - shift.y) + 'px';
+        mainPin.style.top = `${mainPin.offsetTop - shift.y}px`;
       }
       if (mainPin.offsetLeft - shift.x > leftMapBorder && mainPin.offsetLeft - shift.x < rightMapBorder) {
-        mainPin.style.left = mainPin.offsetLeft - shift.x + 'px';
+        mainPin.style.left = `${mainPin.offsetLeft - shift.x}px`;
       }
       window.getCoords.form();
     };
-    let onMouseUp = function (upEvt) {
+
+    function onMouseUp(upEvt) {
       upEvt.preventDefault();
 
       window.getCoords.form();
@@ -63,3 +66,4 @@
   mainPin.addEventListener('click', window.loadDataPinHandler);
 })(window);
 
+ 

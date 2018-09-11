@@ -6,7 +6,7 @@
   let OK_STATUS = 200;
 
   global.backend = {
-    save: function (data, onLoad, onError) {
+    save(data, onLoad, onError) {
       let xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
 
@@ -28,7 +28,7 @@
       xhr.open('POST', URL);
       xhr.send(data);
     },
-    load: function (onLoad, onError) {
+    load(onLoad, onError) {
       let xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
 

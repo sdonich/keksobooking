@@ -10,7 +10,7 @@
   let fragmentPopup = document.createDocumentFragment();
   let crossCloseButton = popup.querySelector('.popup__close');
 
-  let getPopup = function (advert) {
+  function getPopup(advert) {
     while (popup.querySelector('.popup__pictures').lastChild) {
       popup.querySelector('.popup__pictures').removeChild(popup.querySelector('.popup__pictures').lastChild);
     }
@@ -56,7 +56,7 @@
     return popup;
   };
 
-  let getFeatures = function (advert) {
+  function getFeatures(advert) {
     let featuresCard = popupTemplate.querySelector('.popup__features').cloneNode(true);
     let features = featuresCard.querySelectorAll('li');
     for (let i = 0; i < advert.offer.features.length; i++) {
@@ -83,10 +83,10 @@
     }
   };
 
-  let getPopupPhoto = function (advert) {
+  function getPopupPhoto(advert) {
     let popupPhoto = popup.querySelector('.popup__pictures');
 
-    let addPopupPhoto = function (photo) {
+    function addPopupPhoto(photo) {
       let flatPhoto = popupTemplate.querySelector('.popup__pictures').querySelector('li').cloneNode(true);
       flatPhoto.querySelector('img').style.width = PHOTO_WIDTH;
       flatPhoto.querySelector('img').style.height = PHOTO_HEIGHT;
@@ -99,19 +99,19 @@
     return popupPhoto;
   };
 
-  let closePopup = function () {
+  function closePopup() {
     document.querySelector('.popup').remove();
     document.removeEventListener('keydown', onPopupEscPress);
   };
 
-  let onPopupEscPress = function (evt) {
+  function onPopupEscPress(evt) {
     window.util.isEscEvent(evt, closePopup);
   };
-  let onPopupEnterPress = function (evt) {
+  function onPopupEnterPress(evt) {
     window.util.isEnterEvent(evt, closePopup);
   };
 
-  let renderPopup = function (data) {
+  function renderPopup(data) {
     fragmentPopup.appendChild(getPopup(data));
     mainMap.appendChild(fragmentPopup);
 
