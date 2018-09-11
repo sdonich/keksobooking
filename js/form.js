@@ -23,6 +23,7 @@
 
   function resetSet() {
     formNotice.reset();
+    window.setFormState(true);
     document.querySelector('.map__filters').reset();
     window.remove.mapPins();
     window.remove.popup();

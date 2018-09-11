@@ -18,6 +18,7 @@
   let bottomMapBorder = BOTTOM_HORIZON - MAIN_PIN_RADIUS - NEEDLE;
   let topMapBorder = HORIZON - MAIN_PIN_RADIUS;
 
+  //обработчик на mainPin
   global.setupMainPinHandler = function (evt) {
     evt.preventDefault();
 
@@ -62,6 +63,8 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   };
+
+  //вешаем обработчика на mainPin и на функцию, подружающую данные с сервера по перемещению mainPin
   mainPin.addEventListener('mousedown', window.setupMainPinHandler);
   mainPin.addEventListener('click', window.loadDataPinHandler);
 })(window);

@@ -861,7 +861,7 @@ textarea:focus
     background-position: -10px -10px;
 }
 
-.descript-notice
+.descript__notice
 {
   font-family: Roboto, sans-serif;
   font-size: 22px;

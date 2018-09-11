@@ -4,6 +4,7 @@
   let DEBOUNCE_INTERVAL = 500;
 
   let lastTimeout;
+  
   global.debounce = function (fun) {
     if (lastTimeout) {
       window.clearTimeout(lastTimeout);

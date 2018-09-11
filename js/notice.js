@@ -4,11 +4,11 @@
   let ERROR_CODE = 400;
   let TIME = 2000;
 
-  let getError = function (error) {
+  function error(error) {
     let note = document.createElement('div');
 
     document.body.appendChild(note);
-    note.classList.add('descript-notice');
+    note.classList.add('descript__notice');
 
     if (error.code === 0 || !error.code) {
       note.textContent = 'Произошла ошибка соединения с сервером. Проверьте интернет-соединение';
@@ -23,11 +23,11 @@
     }, TIME);
   };
 
-  let getSucces = function () {
+  function succes() {
     let note = document.createElement('div');
 
     document.body.appendChild(note);
-    note.classList.add('descript-notice');
+    note.classList.add('descript__notice');
     note.textContent = 'Ваши данные успешно отправлены';
 
     setTimeout(function () {
@@ -35,11 +35,11 @@
     }, TIME);
   };
 
-  let reset = function () {
+  function reset() {
     let note = document.createElement('div');
 
     document.body.appendChild(note);
-    note.classList.add('descript-notice');
+    note.classList.add('descript__notice');
     note.textContent = 'Введенные данные сброшены';
 
     setTimeout(function () {
@@ -48,9 +48,9 @@
   };
 
   global.notice = {
-    error: getError,
-    succes: getSucces,
-    reset: reset
+    error,
+    succes,
+    reset
   };
 
 })(window);

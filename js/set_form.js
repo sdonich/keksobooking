@@ -1,12 +1,12 @@
 'use strict';
 
 (function (global) {
-  let formNotice = document.querySelector('.notice__form');
-  let fieldsets = formNotice.querySelectorAll('fieldset');
-
+  // активация и деактивация полей формы
   global.setFormState = function (state) {
-    for (let i = 0; i < fieldsets.length; i++) {
-      fieldsets[i].disabled = state;
-    }
+    let noticeFormFields = document.querySelectorAll('.notice__form fieldset');
+
+    noticeFormFields.forEach(function(item) {
+      item.disabled = state;
+    })
   };
 })(window);
