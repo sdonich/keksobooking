@@ -11,18 +11,12 @@
   let crossCloseButton = popup.querySelector('.popup__close');
 
   function getPopup(advert) {
-    while (popup.querySelector('.popup__pictures').lastChild) {
-      popup.querySelector('.popup__pictures').removeChild(popup.querySelector('.popup__pictures').lastChild);
-    }
-    while (popup.querySelector('.popup__features').lastChild) {
-      popup.querySelector('.popup__features').removeChild(popup.querySelector('.popup__features').lastChild);
-    }
-
     let specification = popup.querySelectorAll('p');
+
     popup.querySelector('img').src = advert.author.avatar;
     popup.querySelector('h3').textContent = advert.offer.title;
     specification[0].querySelector('small').textContent = advert.offer.address;
-    specification[1].textContent = advert.offer.price + '\u20BD/ночь';
+    specification[1].textContent = `${advert.offer.price} \u20BD/ночь`;
 
     switch (advert.offer.type) {
       case 'flat':
@@ -39,16 +33,19 @@
         break;
     }
 
-    let amountRooms = ' комнаты';
+    let amountRooms = 'комнаты';
+    if (advert.offer.rooms === 0) {
+      amountRooms = 'комнат';
+    }
     if (advert.offer.rooms === 1) {
-      amountRooms = ' комната';
+      amountRooms = 'комната';
     }
-    let amountGuests = ' гостей';
+    let amountGuests = 'гостей';
     if (advert.offer.guests === 1) {
-      amountGuests = ' гостя';
+      amountGuests = 'гостя';
     }
-    specification[2].textContent = advert.offer.rooms + amountRooms + ' для ' + advert.offer.guests + amountGuests;
-    specification[3].textContent = 'Заезд после ' + advert.offer.checkin + ', выезд до ' + advert.offer.checkout;
+    specification[2].textContent = `${advert.offer.rooms} ${amountRooms} для ${advert.offer.guests} ${amountGuests}`;
+    specification[3].textContent = `Заезд после ${advert.offer.checkin}, выезд до ${advert.offer.checkout}`;
     getFeatures(advert);
     specification[4].textContent = advert.offer.description;
     popup.appendChild(getPopupPhoto(advert));
@@ -57,34 +54,71 @@
   };
 
   function getFeatures(advert) {
-    let featuresCard = popupTemplate.querySelector('.popup__features').cloneNode(true);
-    let features = featuresCard.querySelectorAll('li');
-    for (let i = 0; i < advert.offer.features.length; i++) {
-      switch (advert.offer.features[i]) {
+    let popupFeatures = popup.querySelector('.popup__features');
+    let featuresPattern = popupTemplate.querySelector('.popup__features').cloneNode(true);
+    let feats = featuresPattern.querySelectorAll('li');
+    
+    
+    while (popupFeatures.lastChild) {
+      popupFeatures.removeChild(popupFeatures.lastChild);
+    }
+    console.log(feats);
+    advert.offer.features.forEach(function(item) {
+      // console.log(item);
+      // let feat = item;
+      switch (advert.offer[item]) {
         case 'wifi':
-          popup.querySelector('.popup__features').appendChild(features[0]);
+          console.log(feats);
+          popupFeatures.appendChild(feats[0]);
           break;
         case 'dishwasher':
-          popup.querySelector('.popup__features').appendChild(features[1]);
+          popupFeatures.appendChild(feats[1]);
           break;
         case 'parking':
-          popup.querySelector('.popup__features').appendChild(features[2]);
+          popupFeatures.appendChild(feats[2]);
           break;
         case 'washer':
-          popup.querySelector('.popup__features').appendChild(features[3]);
+          popupFeatures.appendChild(feats[3]);
           break;
         case 'elevator':
-          popup.querySelector('.popup__features').appendChild(features[4]);
+          popupFeatures.appendChild(feats[4]);
           break;
         case 'conditioner':
-          popup.querySelector('.popup__features').appendChild(features[5]);
+          popupFeatures.appendChild(feats[5]);
           break;
       }
-    }
+    });
+
+    // for (let i = 0; i < advert.offer.features.length; i++) {
+    //   switch (advert.offer.features[i]) {
+    //     case 'wifi':
+    //       popupFeatures.appendChild(feats[0]);
+    //       break;
+    //     case 'dishwasher':
+    //       popupFeatures.appendChild(feats[1]);
+    //       break;
+    //     case 'parking':
+    //       popupFeatures.appendChild(feats[2]);
+    //       break;
+    //     case 'washer':
+    //       popupFeatures.appendChild(feats[3]);
+    //       break;
+    //     case 'elevator':
+    //       popupFeatures.appendChild(feats[4]);
+    //       break;
+    //     case 'conditioner':
+    //       popupFeatures.appendChild(feats[5]);
+    //       break;
+    //   }
+    // }
   };
 
   function getPopupPhoto(advert) {
     let popupPhoto = popup.querySelector('.popup__pictures');
+    
+    while (popupPhoto.lastChild) {
+      popupPhoto.removeChild(popupPhoto.lastChild);
+    }
 
     function addPopupPhoto(photo) {
       let flatPhoto = popupTemplate.querySelector('.popup__pictures').querySelector('li').cloneNode(true);
@@ -100,7 +134,7 @@
   };
 
   function closePopup() {
-    document.querySelector('.popup').remove();
+    popup.remove();
     document.removeEventListener('keydown', onPopupEscPress);
   };
 
