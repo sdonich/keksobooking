@@ -58,59 +58,34 @@
     let featuresPattern = popupTemplate.querySelector('.popup__features').cloneNode(true);
     let feats = featuresPattern.querySelectorAll('li');
     
-    
     while (popupFeatures.lastChild) {
       popupFeatures.removeChild(popupFeatures.lastChild);
     }
-    console.log(feats);
+ 
     advert.offer.features.forEach(function(item) {
-      // console.log(item);
-      // let feat = item;
-      switch (advert.offer[item]) {
-        case 'wifi':
-          console.log(feats);
-          popupFeatures.appendChild(feats[0]);
-          break;
-        case 'dishwasher':
-          popupFeatures.appendChild(feats[1]);
-          break;
-        case 'parking':
-          popupFeatures.appendChild(feats[2]);
-          break;
-        case 'washer':
-          popupFeatures.appendChild(feats[3]);
-          break;
-        case 'elevator':
-          popupFeatures.appendChild(feats[4]);
-          break;
-        case 'conditioner':
-          popupFeatures.appendChild(feats[5]);
-          break;
-      }
-    });
+      popupFeatures.appendChild(feats[advert.offer.features.indexOf(item)]);
 
-    // for (let i = 0; i < advert.offer.features.length; i++) {
-    //   switch (advert.offer.features[i]) {
-    //     case 'wifi':
-    //       popupFeatures.appendChild(feats[0]);
-    //       break;
-    //     case 'dishwasher':
-    //       popupFeatures.appendChild(feats[1]);
-    //       break;
-    //     case 'parking':
-    //       popupFeatures.appendChild(feats[2]);
-    //       break;
-    //     case 'washer':
-    //       popupFeatures.appendChild(feats[3]);
-    //       break;
-    //     case 'elevator':
-    //       popupFeatures.appendChild(feats[4]);
-    //       break;
-    //     case 'conditioner':
-    //       popupFeatures.appendChild(feats[5]);
-    //       break;
-    //   }
-    // }
+      // switch (item) {
+      //   case 'wifi':
+      //     popupFeatures.appendChild(feats[0]);
+      //     break;
+      //   case 'dishwasher':
+      //     popupFeatures.appendChild(feats[1]);
+      //     break;
+      //   case 'parking':
+      //     popupFeatures.appendChild(feats[2]);
+      //     break;
+      //   case 'washer':
+      //     popupFeatures.appendChild(feats[3]);
+      //     break;
+      //   case 'elevator':
+      //     popupFeatures.appendChild(feats[4]);
+      //     break;
+      //   case 'conditioner':
+      //     popupFeatures.appendChild(feats[5]);
+      //     break;
+      // }
+    });
   };
 
   function getPopupPhoto(advert) {
