@@ -1,16 +1,16 @@
 'use strict';
 
 (function (global) {
-
   let mapPins = document.querySelector('.map__pins');
-
+  let selectorMapPin = '.map__pin:not(.map__pin--main)';
+  
   global.remove = {
-    mapPins: function () {
-      while (mapPins.children[2]) {
-        mapPins.removeChild(mapPins.children[2]);
+    mapPins() {
+      while (mapPins.querySelector(selectorMapPin)) {
+        mapPins.removeChild(mapPins.querySelector(selectorMapPin));
       }
     },
-    popup: function () {
+    popup() {
       if (document.querySelector('.popup')) {
         document.querySelector('.popup').remove();
       }

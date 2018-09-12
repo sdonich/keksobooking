@@ -5,11 +5,11 @@
 
   let lastTimeout;
   
-  global.debounce = function (fun) {
+  global.debounce = function (func) {
     if (lastTimeout) {
       window.clearTimeout(lastTimeout);
     }
-    lastTimeout = window.setTimeout(fun, DEBOUNCE_INTERVAL);
+    lastTimeout = setTimeout(func, DEBOUNCE_INTERVAL);
   };
 })(window);
 

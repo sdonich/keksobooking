@@ -13,9 +13,9 @@
     if (error.code === 0 || !error.code) {
       note.textContent = 'Произошла ошибка соединения с сервером. Проверьте интернет-соединение';
     } else if (error.code === ERROR_CODE) {
-      note.textContent = 'Ошибка ' + error.code + '. ' + 'Ваши данные не соответсвуют требованиям';
+      note.textContent = `Ошибка ${error.code}. Ваши данные не соответсвуют требованиям`;
     } else {
-      note.textContent = 'Oops! Произошла ошибка: ' + error.code;
+      note.textContent = `Oops! Произошла ошибка: ${error.code}`;
     }
 
     setTimeout(function () {
