@@ -3,6 +3,12 @@
 (function (global) {
   let PHOTO_WIDTH = '40px';
   let PHOTO_HEIGHT = '40px';
+  let OFFER_TYPE = {
+      'flat': 'Квартира',
+      'house': 'Дом',
+      'bungalo': 'Лачуга',
+      'palace': 'Дворец'
+    };
 
   let mainMap = document.querySelector('.map');
   let popupTemplate = document.querySelector('template').content.querySelector('.map__card');
@@ -10,6 +16,7 @@
   let fragmentPopup = document.createDocumentFragment();
   let crossCloseButton = popup.querySelector('.popup__close');
 
+  // получение данных по условиям, предоставляемым арендодателями
   function getPopup(advert) {
     let specification = popup.querySelectorAll('p');
 
@@ -17,22 +24,8 @@
     popup.querySelector('h3').textContent = advert.offer.title;
     specification[0].querySelector('small').textContent = advert.offer.address;
     specification[1].textContent = `${advert.offer.price} \u20BD/ночь`;
-
-    switch (advert.offer.type) {
-      case 'flat':
-        popup.querySelector('h4').textContent = 'Квартира';
-        break;
-      case 'house':
-        popup.querySelector('h4').textContent = 'Дом';
-        break;
-      case 'bungalo':
-        popup.querySelector('h4').textContent = 'Лачуга';
-        break;
-      case 'palace':
-        popup.querySelector('h4').textContent = 'Дворец';
-        break;
-    }
-
+    popup.querySelector('h4').textContent = OFFER_TYPE[advert.offer.type];
+   
     let amountRooms = 'комнаты';
     if (advert.offer.rooms === 0) {
       amountRooms = 'комнат';
@@ -53,6 +46,7 @@
     return popup;
   };
 
+  //функция для получение данных по удобствам квартиры арендодателя
   function getFeatures(advert) {
     let popupFeatures = popup.querySelector('.popup__features');
     let featuresPattern = popupTemplate.querySelector('.popup__features').cloneNode(true);
@@ -64,30 +58,10 @@
  
     advert.offer.features.forEach(function(item) {
       popupFeatures.appendChild(feats[advert.offer.features.indexOf(item)]);
-
-      // switch (item) {
-      //   case 'wifi':
-      //     popupFeatures.appendChild(feats[0]);
-      //     break;
-      //   case 'dishwasher':
-      //     popupFeatures.appendChild(feats[1]);
-      //     break;
-      //   case 'parking':
-      //     popupFeatures.appendChild(feats[2]);
-      //     break;
-      //   case 'washer':
-      //     popupFeatures.appendChild(feats[3]);
-      //     break;
-      //   case 'elevator':
-      //     popupFeatures.appendChild(feats[4]);
-      //     break;
-      //   case 'conditioner':
-      //     popupFeatures.appendChild(feats[5]);
-      //     break;
-      // }
     });
   };
 
+  //функция для получение фотографий квартиры арендодателя-конкурента
   function getPopupPhoto(advert) {
     let popupPhoto = popup.querySelector('.popup__pictures');
     
@@ -102,9 +76,11 @@
       flatPhoto.querySelector('img').src = photo;
       return flatPhoto;
     };
-    for (let i = 0; i < advert.offer.photos.length; i++) {
-      popupPhoto.appendChild(addPopupPhoto(advert.offer.photos[i]));
-    }
+
+    advert.offer.photos.forEach(function(item) {
+      popupPhoto.appendChild(addPopupPhoto(item));
+    });
+
     return popupPhoto;
   };
 
