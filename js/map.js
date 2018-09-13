@@ -64,9 +64,7 @@
     document.addEventListener('mouseup', onMouseUp);
   };
 
-  //вешаем обработчика на mainPin и на функцию, подружающую данные с сервера по перемещению mainPin
+  //вешаем обработчика на mainPin и на функцию, подгружающую данные с сервера по перемещению mainPin
   mainPin.addEventListener('mousedown', window.setupMainPinHandler);
   mainPin.addEventListener('click', window.loadDataPinHandler);
 })(window);
-
- 

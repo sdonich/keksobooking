@@ -39,15 +39,16 @@
     }
     specification[2].textContent = `${advert.offer.rooms} ${amountRooms} для ${advert.offer.guests} ${amountGuests}`;
     specification[3].textContent = `Заезд после ${advert.offer.checkin}, выезд до ${advert.offer.checkout}`;
-    getFeatures(advert);
     specification[4].textContent = advert.offer.description;
-    popup.appendChild(getPopupPhoto(advert));
+
+    setFeatures(advert);
+    setPopupPhoto(advert);
 
     return popup;
   };
 
   //функция для получение данных по удобствам квартиры арендодателя
-  function getFeatures(advert) {
+  function setFeatures(advert) {
     let popupFeatures = popup.querySelector('.popup__features');
     let featuresPattern = popupTemplate.querySelector('.popup__features').cloneNode(true);
     let feats = featuresPattern.querySelectorAll('li');
@@ -62,7 +63,7 @@
   };
 
   //функция для получение фотографий квартиры арендодателя-конкурента
-  function getPopupPhoto(advert) {
+  function setPopupPhoto(advert) {
     let popupPhoto = popup.querySelector('.popup__pictures');
     
     while (popupPhoto.lastChild) {
@@ -80,10 +81,9 @@
     advert.offer.photos.forEach(function(item) {
       popupPhoto.appendChild(addPopupPhoto(item));
     });
-
-    return popupPhoto;
   };
 
+  //функции для закрытия popup'a
   function closePopup() {
     popup.remove();
     document.removeEventListener('keydown', onPopupEscPress);
