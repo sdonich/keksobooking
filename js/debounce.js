@@ -1,7 +1,7 @@
 'use strict';
 
 (function (global) {
-  let DEBOUNCE_INTERVAL = 500;
+  let DEBOUNCE_INTERVAL = 700;
 
   let lastTimeout;
   

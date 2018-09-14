@@ -4,13 +4,37 @@
 
   let FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
   let AVATAR_DEFAULT = 'img/muffin.png';
+  let PRICE_OFFER = {
+    'flat': {
+      price: {
+        min: '1000',
+        placeholder: '5000'
+      }  
+    },
+    'bungalo': {
+      price: {
+        min: '0',
+        placeholder: '5000'
+      }  
+    },
+    'house': {
+      price: {
+        min: '5000',
+        placeholder: '5000'
+      }  
+    },
+    'palace': {
+      price: {
+        min: '10000',
+        placeholder: '10000'
+      }  
+    },
+    defaultHolder: 5000
+  };
 
   let formNotice = document.querySelector('.notice__form');
   let mainMap = document.querySelector('.map');
   let mainPin = mainMap.querySelector('.map__pin--main');
-  let fileChooser = document.querySelector('#images');
-  let photoPreview = fileChooser.nextElementSibling;
-  let fileChooserAvatar = document.querySelector('#avatar');
   let avatarPreview = document.querySelector('.notice__preview img');
 
   window.setFormState(true);
@@ -23,6 +47,7 @@
 
   function resetSet() {
     formNotice.reset();
+    document.querySelector('#price').placeholder = PRICE_OFFER.defaultHolder;
     window.setFormState(true);
     document.querySelector('.map__filters').reset();
     window.remove.mapPins();
@@ -64,51 +89,28 @@
   });
 
   document.querySelector('#type').addEventListener('change', function (evt) {
-    let minPrice = document.querySelector('#price');
+    let price = document.querySelector('#price');
+    let value = evt.target.value;
 
-    if (evt.target.value === 'flat') {
-      minPrice.min = '1000';
-      minPrice.placeholder = '5000';
-    }
-    if (evt.target.value === 'bungalo') {
-      minPrice.min = '0';
-      minPrice.placeholder = '5000';
-    }
-    if (evt.target.value === 'house') {
-      minPrice.min = '5000';
-      minPrice.placeholder = '5000';
-    }
-    if (evt.target.value === 'palace') {
-      minPrice.min = '10000';
-      minPrice.placeholder = '10000';
-    }
+    price.min = PRICE_OFFER[value].price.min;
+    price.placeholder = PRICE_OFFER[value].price.placeholder;
   });
 
   document.querySelector('#room_number').addEventListener('change', function (evt) {
     let numGuests = document.querySelector('#capacity');
     let option = numGuests.querySelectorAll('option');
 
-    if (evt.target.value === '1') {
-      option[0].disabled = true;
-      option[1].disabled = true;
-      option[2].disabled = false;
-      option[3].disabled = true;
-      numGuests.value = '1';
-    }
-    if (evt.target.value === '2') {
+    if (evt.target.value === '1' ||
+        evt.target.value === '2' ||
+        evt.target.value === '3') {
+
       option[0].disabled = false;
       option[1].disabled = false;
       option[2].disabled = false;
       option[3].disabled = true;
-      numGuests.value = '2';
-    }
-    if (evt.target.value === '3') {
-      option[0].disabled = false;
-      option[1].disabled = false;
-      option[2].disabled = false;
-      option[3].disabled = true;
-      numGuests.value = '3';
-    }
+      numGuests.value = evt.target.value;
+    } 
+
     if (evt.target.value === '100') {
       option[0].disabled = true;
       option[1].disabled = true;
@@ -119,28 +121,26 @@
   });
 
   let formFeatures = formNotice.querySelectorAll('input[type=checkbox]');
-  for (let i = 0; i < formFeatures.length; i++) {
 
-    formFeatures[i].addEventListener('focus', function (evt) {
+  formFeatures.forEach(function(item) {
+    item.addEventListener('focus', function (evt) {
       evt.target.nextElementSibling.style.boxShadow = '0 0 4px 1px #ff6547';
     });
 
-    formFeatures[i].addEventListener('blur', function (evt) {
+    item.addEventListener('blur', function (evt) {
       evt.target.nextElementSibling.style.boxShadow = '';
     });
 
-    formFeatures[i].addEventListener('keydown', function (evt) {
+    item.addEventListener('keydown', function (evt) {
       window.util.isEnterEvent(evt, function () {
         evt.preventDefault();
-
-        if (evt.target.checked === false) {
-          evt.target.checked = true;
-        } else {
-          evt.target.checked = false;
-        }
+        evt.target.checked = !evt.target.checked;
       });
     });
-  }
+  })
+
+  let fileChooser = document.querySelector('#images');
+  let photoPreview = fileChooser.nextElementSibling;
 
   fileChooser.addEventListener('change', function () {
     let file = fileChooser.files[0];
@@ -154,11 +154,13 @@
       let reader = new FileReader();
 
       reader.addEventListener('load', function () {
-        photoPreview.style.backgroundImage = 'url(' + reader.result + ')';
+        photoPreview.style.backgroundImage = `url('${reader.result}')`;
       });
       reader.readAsDataURL(file);
     }
   });
+
+  let fileChooserAvatar = document.querySelector('#avatar');
 
   fileChooserAvatar.addEventListener('change', function () {
     let file = fileChooserAvatar.files[0];
