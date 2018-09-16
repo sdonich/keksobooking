@@ -13,7 +13,7 @@
   let filterPrice = document.querySelector('#housing-price');
   let filterType = document.querySelector('#housing-type');
 
-  let featureFilter = function (item) {
+  function featureFilter(item) {
     let wifiPresented = item.offer.features.indexOf('wifi') !== -1;
     let dishwasherPresented = item.offer.features.indexOf('dishwasher') !== -1;
     let parkingPresented = item.offer.features.indexOf('parking') !== -1;
@@ -32,17 +32,17 @@
     return result;
   };
 
-  let guestsFilter = function (item) {
+  function guestsFilter(item) {
     let matchGuests = item.offer.guests === +filterGuests.value;
     return filterGuests.value === 'any' ? true : matchGuests;
   };
 
-  let roomsFilter = function (item) {
+  function roomsFilter(item) {
     let matchRooms = item.offer.rooms === +filterRooms.value;
     return filterRooms.value === 'any' ? true : matchRooms;
   };
 
-  let priceFilter = function (item) {
+  function priceFilter(item) {
     let price = item.offer.price;
     if (filterPrice.value === 'any') {
       return true;
@@ -57,7 +57,7 @@
     return price >= 50000;
   };
 
-  let houseTypeFilter = function (item) {
+  function houseTypeFilter(item) {
     let matchType = item.offer.type === filterType.value;
     return filterType.value === 'any' ? true : matchType;
   };

@@ -139,6 +139,7 @@
     });
   })
 
+  //загрузка фотографий квартиры
   let fileChooser = document.querySelector('#images');
   let photoPreview = fileChooser.nextElementSibling;
 
@@ -160,6 +161,7 @@
     }
   });
 
+  //загрузка аватара
   let fileChooserAvatar = document.querySelector('#avatar');
 
   fileChooserAvatar.addEventListener('change', function () {
