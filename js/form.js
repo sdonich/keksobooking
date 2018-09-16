@@ -164,7 +164,16 @@
   //загрузка аватара
   let fileChooserAvatar = document.querySelector('#avatar');
 
-  fileChooserAvatar.addEventListener('change', function () {
+  fileChooserAvatar.addEventListener('change', function (evt) {
+    console.log('hell');
+
+    // if(zzz) {
+    //   // fileChooserAvatar.files[0] = zzz;
+    //   // console.log(fileChooserAvatar.files[0]);
+    // }
+
+    // debugger;
+    // console.log(evt.dataTransfer);
     let file = fileChooserAvatar.files[0];
     let fileName = file.name.toLowerCase();
 
@@ -180,5 +189,131 @@
       });
       reader.readAsDataURL(file);
     }
+
+    
+    
+
+
   });
+
+  // let zzz;
+  let xxx = document.querySelector('.drop-zone');
+
+  xxx.addEventListener('dragover', function(evt){
+    
+
+    if(evt.target === xxx) {
+      evt.preventDefault();
+      // console.log('hello two');
+      // console.log(fileChooserAvatar.files[0]);
+    }
+    let dt = evt.dataTransfer;
+    let file = dt.files;
+    // console.log(file);
+    
+  });
+  xxx.addEventListener("drop", function(evt){
+    if(evt.target === xxx) {
+      evt.preventDefault();
+      // console.log(fileChooserAvatar.files[0]);
+
+
+      // console.log('hello one again');
+    }
+    let dt = evt.dataTransfer;
+    let file = dt.files[0];
+    // handleFiles(file);
+
+    console.log(file);
+    // console.log(fileChooserAvatar.files[0]);
+    // fileChooserAvatar.files = [];
+    // fileChooserAvatar.files.push(file);
+    // console.log(fileChooserAvatar);
+
+    
+  });
+
+
+
+
+
+  // xxx.addEventListener('drop', function(evt) {
+  //   console.log(evt.dataTransfer.fileList);
+  //   console.dir(fileChooserAvatar);
+  //   let file = evt.dataTransfer.files[0];
+    
+  //   let reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.addEventListener('load', function () {
+  //     zzz = reader.result;
+  //     // console.log(zzz);
+  //   });
+    
+  //   // let event = new Event('change');
+  //   // console.log(evt.dataTransfer.files[0]);
+  //   // console.log(fileChooserAvatar.fileList);
+  //   // fileChooserAvatar.files[0] = evt.dataTransfer.files[0];
+  //   // console.log(fileChooserAvatar);
+
+
+
+  //   // fileChooserAvatar.dispatchEvent(event);
+  //   // let file = fileChooserAvatar.files[0];
+  //   // console.log(file);
+
+  //     // let zzz = evt;
+  //     // let zzz = evt.dataTransfer.files[0];
+  //     // console.log(zzz);
+  //     // console.log(evt.dataTransfer.files[0]);
+
+
+      
+
+  //     // fileChooserAvatar.addEventListener('ddd', aaa);
+
+      
+  //     // debugger;
+  //     // console.log(fileChooserAvatar);
+  //     // evt.stopPropagation();
+  //     // evt.preventDefault();
+  //     // console.log('hello');
+  //     // console.log(evt.target);
+  //     // console.log('hello its me');
+  //   });
+
+ 
+  
+  
+  
+    // console.log(xxx);
+ 
+
+  // global.addEventListener('dragover', function(evt){
+
+  //   if(evt.target === xxx) {
+  //     evt.preventDefault();
+  //     console.log('hello two');
+  //     console.log(fileChooserAvatar.files[0]);
+
+
+  //   }else{
+  //     console.log('hello two');
+      
+  //   } 
+    
+  // });
+  // global.addEventListener("drop", function(evt){
+  //   if(evt.target === xxx) {
+  //     evt.preventDefault();
+  //     console.log(fileChooserAvatar.files[0]);
+
+
+  //     console.log('hello one again');
+  //   }else{
+  //     // evt.preventDefault();
+  //     console.log('hello one again');
+  //   }
+    
+  // });
+
 })(window);
