@@ -295,7 +295,13 @@ textarea:focus
     width: 65px;
     height: 65px;
 
-    cursor: move;
+    cursor: grab;
+    z-index: 5;
+}
+
+.map__pin--main:active
+{
+    cursor: grabbing;
 }
 
 .map__pin--main img
