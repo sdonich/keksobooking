@@ -262,14 +262,15 @@ textarea:focus
     border-radius: 50%;
 }
 
-.map__pin:not(.map__pin--main) {
-    transform: scale(0);
+.map__pin:not(.map__pin--main)
+{
+    transform: translate(-50%, -50%) scale(0.1);    
 }
 
 .map__pin.scale
 {
-    transform: scale(1);
-    transition-duration: 0.25s;
+    transform: scale(1) translate(-50%, -50%);  
+    transition-duration: 1s;
 }
 
 .map__pin:not(.map__pin--main)::after
