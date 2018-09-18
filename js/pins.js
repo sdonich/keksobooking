@@ -2,6 +2,8 @@
 
 (function (global) {
   let MAX_MAP_PINS = 100;
+  let PIN_APPER_TIME = 100;
+
   let mapPins = document.querySelector('.map__pins');
   let loadAdverts = [];
   let fragmentMapPin = document.createDocumentFragment();
@@ -10,6 +12,13 @@
   //отчистка карты от mapPins и popup при активации фильтров
   let formContainer = document.querySelector('.map__filters');
   formContainer.addEventListener('change', function () {
+    window.remove.mapPins();
+    window.remove.popup();
+    window.debounce(global.createMapPins);
+  });
+
+  let resetFilter = document.querySelector('.filter--reset');
+  resetFilter.addEventListener('click', function() {
     window.remove.mapPins();
     window.remove.popup();
     window.debounce(global.createMapPins);
@@ -42,6 +51,13 @@
     window.backend.load(function (response) {
       loadAdverts = response.slice();
       mapPins.appendChild(getMapPin());
+
+      setTimeout(function() {
+        let pins = document.querySelectorAll('.map__pin:not(.map__pin--main');
+              pins.forEach(function(pin) {
+                pin.classList.add('scale');
+              })
+      }, PIN_APPER_TIME);
     },
     window.notice.error);
   };

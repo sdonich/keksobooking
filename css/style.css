@@ -47,6 +47,12 @@ button[type=submit]
     background-color: white;
 }
 
+button[type=submit]:focus
+{
+    outline: none;
+    border-color: #ff6d51;
+}
+
 button[type=submit]:hover
 {
     border-color: #ff6d51;
@@ -254,6 +260,16 @@ textarea:focus
     top: 5px;
 
     border-radius: 50%;
+}
+
+.map__pin:not(.map__pin--main) {
+    transform: scale(0);
+}
+
+.map__pin.scale
+{
+    transform: scale(1);
+    transition-duration: 0.25s;
 }
 
 .map__pin:not(.map__pin--main)::after
@@ -558,6 +574,41 @@ textarea:focus
 {
     border-radius: 3px;
     background-color: #f8f8f8;
+}
+
+.map__filters .feature:hover
+{
+  box-shadow: 0 0 4px 1px #ff6547;
+
+}
+
+.filter--reset
+{
+    display: inline-block;
+    overflow: hidden;
+    height: 28px;
+    min-height: 28px;
+    border-radius: 3px;
+    border-width: 0;
+    padding: 0 10px;
+    background-color: #f8f8f8;
+}
+
+button[type=reset]:focus
+{
+    outline: none;
+    box-shadow: 0 0 4px 1px #ff6547;
+}
+
+button[type=reset]:hover
+{
+    box-shadow: 0 0 4px 1px #ff6547;
+}
+
+.map__filters--reset
+{
+    height: 32px;
+    margin-left: 25px;
 }
 
 .notice
