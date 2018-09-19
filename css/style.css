@@ -270,7 +270,7 @@ textarea:focus
 .map__pin.scale
 {
     transform: scale(1) translate(-50%, -50%);  
-    transition-duration: 1s;
+    transition-duration: 0.5s;
 }
 
 .map__pin:not(.map__pin--main)::after
@@ -455,6 +455,12 @@ textarea:focus
     background: #fff;
 }
 
+.popup
+{
+    transform: translateX(-250px);
+    opacity: 0;
+}
+
 .popup ul
 {
     margin: 0;
@@ -500,6 +506,9 @@ textarea:focus
 {
     font-size: 0;
 
+    width: 50px;
+    height: 50px;
+
     position: absolute;
     right: 5px;
     bottom: 100%;
@@ -511,6 +520,7 @@ textarea:focus
 
     border: 0;
     background: none;
+    border-radius: 25px;
 }
 
 .popup__close:active
@@ -531,6 +541,16 @@ textarea:focus
     text-indent: 0;
 
     color: #000;
+}
+
+
+
+.map__card.popup.popup__show
+{
+    transition-duration: 0.5s;
+    transform: translate(0);
+    opacity: 1;
+    
 }
 
 .map__filters-container
@@ -942,11 +962,21 @@ button[type=reset]:hover
 .popup__close:active,
 .popup__close:focus
 {
-  box-shadow: 0 0 4px 1px #ff6547;
+  box-shadow: 0 0 10px 1px #ff6547 inset;
+  
   outline: none;
 }
 
 .form__photo-container .drop-zone
 {
     background-size: 100%;
+}
+
+.picture__show
+{
+    position: absolute;
+    border: 2px solid black;
+    top: 100px;
+    left: 50%;
+    z-index: 10;
 }

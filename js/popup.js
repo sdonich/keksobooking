@@ -4,11 +4,12 @@
   let PHOTO_WIDTH = '40px';
   let PHOTO_HEIGHT = '40px';
   let OFFER_TYPE = {
-      'flat': 'Квартира',
-      'house': 'Дом',
-      'bungalo': 'Лачуга',
-      'palace': 'Дворец'
-    };
+    'flat': 'Квартира',
+    'house': 'Дом',
+    'bungalo': 'Лачуга',
+    'palace': 'Дворец'
+  };
+  let PIN_APPER_TIME = 100;
 
   let mainMap = document.querySelector('.map');
   let popupTemplate = document.querySelector('template').content.querySelector('.map__card');
@@ -85,6 +86,9 @@
 
   //функции для закрытия popup'a
   function closePopup() {
+    // let 
+
+    popup.classList.remove('popup__show');
     popup.remove();
     document.removeEventListener('keydown', onPopupEscPress);
   };
@@ -108,11 +112,70 @@
   global.setupPinHandler = function (pin, data) {
     pin.addEventListener('click', function () {
       renderPopup(data);
+      // console.log(pin);
+      let popupShow = document.querySelector('.popup');
+      let popupPictures = popupShow.querySelectorAll('img');
+      // console.log(popupPicture);
+      popupPictures.forEach(function(item) {
+        item.addEventListener('click', function(evt) {
+          console.log(evt.target);
+          let img = evt.target.cloneNode(true);
+          img.style.width = '100%';
+          img.style.height = '100%';
+          
+
+          
+            let pictureShow = document.createElement('div');
+            pictureShow.classList.add('picture__show');
+          
+
+            mainMap.appendChild(pictureShow);
+          pictureShow.appendChild(img);
+          
+
+          
+          console.log(pictureShow);
+
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        });
+
+      });
+      
+      
+      
+
+      setTimeout(function() {
+        
+        popupShow.classList.add('popup__show');
+
+      }, PIN_APPER_TIME);
     });
 
     pin.addEventListener('keydown', function (evt) {
       window.util.isEnterEvent(evt, function () {
         renderPopup(data);
+
+        setTimeout(function() {
+          let popupShow = document.querySelector('.popup');
+          popupShow.classList.add('popup__show');
+  
+        }, PIN_APPER_TIME);
+
       });
     });
   };
