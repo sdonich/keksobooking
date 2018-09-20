@@ -9,12 +9,14 @@
     'bungalo': 'Лачуга',
     'palace': 'Дворец'
   };
-  let PIN_APPER_TIME = 100;
+  let PIN_SHOW_TIME = 100;
 
   let mainMap = document.querySelector('.map');
-  let popupTemplate = document.querySelector('template').content.querySelector('.map__card');
+  let template = document.querySelector('template').content;
+  let popupTemplate = template.querySelector('.map__card');
   let popup = popupTemplate.cloneNode(true);
   let fragmentPopup = document.createDocumentFragment();
+
   let crossCloseButton = popup.querySelector('.popup__close');
 
   // получение данных по условиям, предоставляемым арендодателями
@@ -84,18 +86,23 @@
     });
   };
 
-  //функции для закрытия popup'a
+  //функции для закрытия popup'a и picture'a
   function closePopup() {
-    // let 
-
     popup.classList.remove('popup__show');
     popup.remove();
     document.removeEventListener('keydown', onPopupEscPress);
   };
 
   function onPopupEscPress(evt) {
+    if(document.querySelector('.picture__show')) {
+      document.querySelector('.picture__show').remove();
+
+      return;
+    } 
+
     window.util.isEscEvent(evt, closePopup);
   };
+
   function onPopupEnterPress(evt) {
     window.util.isEnterEvent(evt, closePopup);
   };
@@ -112,58 +119,7 @@
   global.setupPinHandler = function (pin, data) {
     pin.addEventListener('click', function () {
       renderPopup(data);
-      // console.log(pin);
-      let popupShow = document.querySelector('.popup');
-      let popupPictures = popupShow.querySelectorAll('img');
-      // console.log(popupPicture);
-      popupPictures.forEach(function(item) {
-        item.addEventListener('click', function(evt) {
-          console.log(evt.target);
-          let img = evt.target.cloneNode(true);
-          img.style.width = '100%';
-          img.style.height = '100%';
-          
-
-          
-            let pictureShow = document.createElement('div');
-            pictureShow.classList.add('picture__show');
-          
-
-            mainMap.appendChild(pictureShow);
-          pictureShow.appendChild(img);
-          
-
-          
-          console.log(pictureShow);
-
-
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        });
-
-      });
-      
-      
-      
-
-      setTimeout(function() {
-        
-        popupShow.classList.add('popup__show');
-
-      }, PIN_APPER_TIME);
+      window.picturePopupHandler();
     });
 
     pin.addEventListener('keydown', function (evt) {
@@ -173,8 +129,7 @@
         setTimeout(function() {
           let popupShow = document.querySelector('.popup');
           popupShow.classList.add('popup__show');
-  
-        }, PIN_APPER_TIME);
+        }, PIN_SHOW_TIME);
 
       });
     });

@@ -510,8 +510,8 @@ textarea:focus
     height: 50px;
 
     position: absolute;
-    right: 5px;
-    bottom: 100%;
+    right: -15px;
+    bottom: 98%;
 
     margin: 0 0 5px;
     padding: 0;
@@ -962,8 +962,6 @@ button[type=reset]:hover
 .popup__close:active,
 .popup__close:focus
 {
-  box-shadow: 0 0 10px 1px #ff6547 inset;
-  
   outline: none;
 }
 
@@ -975,7 +973,6 @@ button[type=reset]:hover
 .picture__show
 {
     position: absolute;
-    border: 2px solid black;
     top: 100px;
     left: 50%;
     z-index: 10;
