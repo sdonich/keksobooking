@@ -88,18 +88,16 @@
 
   //функции для закрытия popup'a и picture'a
   function closePopup() {
+    if(document.querySelector('.picture__show')) {
+      return;
+    }
+
     popup.classList.remove('popup__show');
     popup.remove();
     document.removeEventListener('keydown', onPopupEscPress);
   };
 
   function onPopupEscPress(evt) {
-    if(document.querySelector('.picture__show')) {
-      document.querySelector('.picture__show').remove();
-
-      return;
-    } 
-
     window.util.isEscEvent(evt, closePopup);
   };
 
