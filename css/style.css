@@ -556,6 +556,42 @@ textarea:focus
   outline: none;
 }
 
+.arrow
+{
+    width: 20px;
+    height: 32px;
+
+    margin: 0;
+    padding: 0;
+
+    position: absolute;
+    bottom: 50%;
+    border: 0;
+    outline: none;
+    opacity: 0.5;
+    
+    background: none;
+    background-image: url('../img/arrow.png');
+    background-repeat: no-repeat;
+}
+
+.arrow:hover
+{
+    opacity: 1;
+}
+
+.arrow__left
+{
+    left: 5%;
+    background-position: 0px -25px;
+}
+
+.arrow__right
+{
+    right: 5%;
+    background-position: 0px -63px;
+}
+
 .map__card.popup.popup__show
 {
     transition-duration: 0.5s;

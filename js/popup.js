@@ -117,7 +117,7 @@
   global.setupPinHandler = function (pin, data) {
     pin.addEventListener('click', function () {
       renderPopup(data);
-      window.picturePopupHandler();
+      window.picturePopupHandler(data);
     });
 
     pin.addEventListener('keydown', function (evt) {
