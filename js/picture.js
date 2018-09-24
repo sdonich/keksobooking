@@ -8,51 +8,29 @@
   let pictureTemplate = template.querySelector('.picture__show');
   let pictureContainer = pictureTemplate.cloneNode(true);
   let picture = pictureContainer.querySelector('img');
-  let leftFlipButton = pictureContainer.querySelector('.arrow__left');
-  let closeButtonPic = pictureContainer.querySelector('.popup__close');
+  let closeButtonPic = pictureContainer.querySelector('.cross--vk');
 
   function closePicture() {
     pictureContainer.remove();
-
     document.querySelector('.shadow').remove();
     document.removeEventListener('keydown', onPictureEscPress);
   }
 
   function onPictureEscPress(evt) {
     window.util.isEscEvent(evt, closePicture);
-  };
-
-  // function pictureLeftFlip(evt) {
-
-  //   // console.log(picture);
-
-  // }
-
-
-  function getSrc(arrPics) {
-    // let sourceImg = evt.target.src;
-    // console.log(sourceImg);
-    // console.log(evt.target.parentElement.parentElement);
-    let pictures = [];
-    
-    arrPics.forEach(function(item) {
-      // console.log(item);
-      let src = item.src;
-      pictures.push(src);
-
-    });
-
-    return pictures;
-    
-   
-
-
   }
 
+  function getSrc(arrPics) {
+    let pictures = [];
+    arrPics.forEach(function(item) {
+      let src = item.src;
+      pictures.push(src);
+    });
+    return pictures;
+  }
 
   function createShadow() {
     let shadow = document.createElement('div');
-
     shadow.classList.add('shadow');
     document.body.prepend(shadow);
   }
@@ -64,79 +42,28 @@
     popupPictures.forEach(function(item) {
       item.addEventListener('click', function(evt) {
         let sourceImg = evt.target.src;
-
         let srcPictures = getSrc(popupPictures);
-        
 
         createShadow();
         picture.src = sourceImg;
         pictureContainer.appendChild(picture);
         mainMap.appendChild(pictureContainer);
-        pictureContainer.style.transform = `translateX(-${picture.offsetWidth / 2}px)`;
-
-        closeButtonPic.addEventListener('click', closePicture);
+        
         document.addEventListener('keydown', onPictureEscPress);
-
-        // leftFlipButton.addEventListener('click', function() {
-        //   let currentIndex = srcPictures.indexOf(sourceImg);
-        //   let index;
-
-        //   console.log(currentIndex);
-          
-        //   if(currentIndex === 0) {
-        //     index = srcPictures.length - 1;
-        //   }else{
-        //     index = currentIndex - 1;
-        //   }
-        //   picture.src = srcPictures[index];
-        //   sourceImg = picture.src;
-        //   // console.log(picture);
-
-
-          
-
-
-
-
-          
-        // });
-
         pictureContainer.addEventListener('click', function(evt) {
-          let currentIndex = srcPictures.indexOf(sourceImg);
-          let index;
-          console.log(evt.target.tagName !== 'BUTTON');
-
-          if(evt.target.tagName !== 'BUTTON') {
+          if(evt.target.classList.contains('cross--vk')) {
+            closePicture();
             return;
           }
 
-          // console.log(evt.target.className === 'arrow__left arrow');
-
-          if (evt.target.className === 'arrow__left arrow') {
-            if(currentIndex === 0) {
-              index = srcPictures.length - 1;
-            }else{
-              index = currentIndex - 1;
-            }
-           
-          }
-          if (evt.target.className === 'arrow__right arrow') {
-            if(currentIndex === srcPictures.length - 1) {
-              index = 0;
-            }else{
-              index = currentIndex + 1;
-            }
-          }
-
+          let currentIndex = srcPictures.indexOf(sourceImg);
+          let picLength = srcPictures.length;
+          let direction = evt.target.getAttribute('direction');
+          let index = window.fliper[direction](currentIndex, picLength);
+          
           picture.src = srcPictures[index];
           sourceImg = picture.src;
-
-
-
         });
-
-
-
       });
     });
     setTimeout(function() {

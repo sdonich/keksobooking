@@ -575,6 +575,32 @@ textarea:focus
     background-repeat: no-repeat;
 }
 
+.cross--vk
+{
+    width: 20px;
+    height: 23px;
+
+    margin: 0;
+    padding: 0;
+
+    position: absolute;
+    top: -6%;
+    right: 0;
+    border: 0;
+    outline: none;
+    opacity: 0.5;
+    
+    background: none;
+    background-image: url('../img/arrow.png');
+    background-repeat: no-repeat;
+    background-position: 0px 6px;
+}
+
+.cross--vk:hover
+{
+    opacity: 1;
+}
+
 .arrow:hover
 {
     opacity: 1;
@@ -1013,9 +1039,12 @@ button[type=reset]:hover
 .picture__show
 {
     position: fixed;
+    display: flex;
+    width: 900px;
     top: 100px;
-    left: 50%;
+    left: 500px;
     z-index: 12;
+    background-color: #191818;
 }
 
 .shadow
@@ -1029,4 +1058,10 @@ button[type=reset]:hover
     top: 0;
     left: 0;
     z-index: 10;
+}
+
+.picture__whole 
+{
+    max-width: 900px;
+    margin: 0 auto;
 }
