@@ -8,8 +8,7 @@
   let pictureTemplate = template.querySelector('.picture__show');
   let pictureContainer = pictureTemplate.cloneNode(true);
   let picture = pictureContainer.querySelector('img');
-  let closeButtonPic = pictureContainer.querySelector('.cross--vk');
-
+  
   function closePicture() {
     pictureContainer.remove();
     document.querySelector('.shadow').remove();
